@@ -1,0 +1,80 @@
+<div class="container">
+  <div id="slideshowHolder" style="padding-right:250px" class='pics pull-right'> 
+    <img src="/transiciones/4.jpg"/> 
+    <img src="/sun2.jpg"  /> 
+    <img src="/transiciones/1.jpg"/> 
+    <img src="/transiciones/2.jpg" />   
+    <img src="/transiciones/3.jpg"/> 
+    <img src="/transiciones/5.jpg"/> 
+    <img src="/transiciones/6.jpg"/> 
+    <img src="/snow.jpg" /> 
+    <img src="/transiciones/7.jpg"/> 
+    <img src="/transiciones/8.jpg"/> 
+    <img src="/transiciones/9.jpg"/> 
+    <img src="/sun.jpg" /> 
+    <img src="/transiciones/10.jpg"/>
+  </div> 
+
+  <%= form_for @usuario, :html => { :class => 'form-horizontal' }  do |f| %>
+    <% if @usuario.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@usuario.errors.count, "error") %> prohibited this usuario from being saved:</h2>
+        <ul>
+          <% @usuario.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <br>
+    <div class="control-label">
+      <%= f.label :Nombre %>
+    </div>
+    <div class="controls">
+      <%= f.text_field :username, class: :"input-xlarge" %>
+    </div>
+    
+    <div class="control-label">
+      <%= f.label :Email %>
+    </div>
+    <div class="controls">
+      <%= f.text_field :email, class: :"input-xlarge" %>
+    </div>
+
+    <div class="control-label">
+      <%= f.label :Contraseña %>
+    </div>
+    <div class="controls">
+      <%= f.password_field :password, class: :"input-xlarge" %>
+    </div>
+
+    <div class="control-label">
+      <%= f.label :Confirmar_contraseña %>
+    </div>
+    <div class="controls">
+      <%= f.password_field :password_confirmation, class: :"input-xlarge" %>
+    </div>
+    <div class="control-label">
+      <%= f.label :Sexo %>
+    </div>
+    <!--  -->
+    <div class="controls">
+      <%= f.radio_button :sexo, "false", :checked => true%> Hombre
+      <%= f.radio_button :sexo, "true" %> Mujer
+    </div>
+    <br>
+    <div style="padding-left:250px">
+      <button class="btn btn-success" type="submit"> Aceptar! </button>
+    
+      <% if session[:admin_new] == true %>
+        <%= link_to 'Cancelar', :back, class: :"btn btn-inverse btn-primary active" %> 
+      <% elsif  session[:usuario_new] == true %>
+        <%= link_to 'Cancelar', :back, class: :"btn btn-inverse btn-primary active" %> 
+      <% end %>
+      </div>
+  <% end %>
+
+  <script>
+      $('#slideshowHolder').cycle({ width: 400, height: 400, speed:1000 });
+  </script>
+</div>

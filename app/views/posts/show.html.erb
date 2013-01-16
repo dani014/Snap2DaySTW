@@ -1,0 +1,69 @@
+<h1> <%= @post.titulo %> </h1>
+<p>
+	<% if @post.has_photo? %>
+		<center>
+			<%= image_tag @post.photo_path, id: :"imagen-post"%>
+		</center>
+	<% else %>
+		<b>Problema al subir tu foto</b>
+	<% end %>
+</p>
+
+<% if current_user %>
+	<% if (current_user.username == @post.usuario.username) || (current_user.admin?)%>
+		<%= link_to 'Editar', edit_post_path(@post), class: :"btn btn-warning btn-primary active" %>
+		<%= link_to 'Eliminar', @post, confirm: '¿Esta seguro de que desea eliminar este post?', method: :delete, class: :"btn btn-danger active" %>
+	<% end %>
+<% end %>
+
+<h2>Comentarios</h2>
+<% if current_user %>
+	<% if @comentarios.empty? %>
+		<h3>Aún no hay comentarios, ¡Se el primero!</h3>
+	<% end %>
+	<%= form_for(@comentario) do |f| %>
+		<% if @comentario.errors.any? %>
+			<div id="error_explanation">
+				<h2><%= pluralize(@comentario.errors.count, "error") %> prohibited this comentario from being saved:</h2>
+
+				<ul>	
+					<% @comentario.errors.full_messages.each do |msg| %>
+						<li><%= msg %></li>
+					<% end %>
+				</ul>
+			</div>
+		<% end %>
+		<div class="field">
+			<%= f.text_area :texto, :id => "textar", :class => "input-xlarge", :rows => 3, :width => 200 %>
+		</div>
+	  	<div class="actions">
+	  		<%= f.submit "Comentar!", class: :"btn btn-large btn-primary active"%>
+  		</div>
+	<% end %>
+<% else %>
+	<% if @comentarios.empty? %>
+		<h3>Aún no hay comentarios, ¡Se quieres ser el primero, logueate y hazlo! </h3>
+	<% else %>
+		<h3>Si quieres comentar inicia sesión! </h3>
+	<% end %>
+<% end %>
+
+<% @comentarios.each do |comment| %>
+	<div class="well"
+		<% if current_user %>
+			<h6><b> <%= link_to comment.usuario.username, comment.usuario%> </b></h6>
+		<% else %>
+			<h6><b> <%= comment.usuario.username %> </b></h6>
+		<% end %>
+		<!-- <h4> <%= comment.texto %> </h4>  -->
+		<pre> <em> <h4> <%= comment.texto %> </h4> </em> </pre>
+		<% if current_user %>
+			<% if (current_user.username == comment.usuario.username) || (current_user.admin?)%>
+				<div class='pull-right'>
+				<%= link_to 'Editar', edit_comentario_path(comment) , class: :".btn-mini btn-warning btn-primary active" %>
+				<%= link_to 'Eliminar', comment, confirm: '¿Esta seguro de que desea eliminar el comentario?', method: :delete, class: :".btn-mini btn-danger active" %>
+				</div>
+			<% end %>
+		<% end %>
+	</div>	
+<% end %>

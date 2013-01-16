@@ -1,0 +1,35 @@
+<h1>Lista de Usuarios</h1>
+<br>
+<table class="table">
+  <tr>
+    <th>Nombre de Usuario</th>
+    <th>Sexo</th>
+    <th>Email</th>
+    <th>Admin</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @usuarios.each do |usuario| %>
+  <tr>
+    <td><%= usuario.username %></td>
+    <td>
+      <% if usuario.sexo == false %>
+        <%= image_tag ("hombre.png"), :height => '50', :width => '50' %>
+      <% else %>
+        <%= image_tag ('mujer.png'), :height => '50', :width => '50' %>
+      <% end %>
+    </td>
+    <td><%= usuario.email %></td>
+    <td><%= usuario.admin %></td>
+    <td>&nbsp &nbsp <%= link_to 'Mostrar', usuario, class: :"btn btn-primary active" %></td>
+    <td>&nbsp <%= link_to 'Eliminar', usuario, method: :delete, data: { confirm: '¿Esta usted seguro?' }, class: :"btn btn-danger active" %></td>
+    <td>&nbsp <%= link_to 'Cambiar privilegio', admin_path(usuario), data: { confirm: 'Va a crear un nuevo administrador. ¿Esta usted seguro?'}, class: :"btn btn-warning active" %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Nuevo Usuario', new_usuario_path, class: :"btn btn-large btn-primary active" %>

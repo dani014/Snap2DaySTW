@@ -1,0 +1,18 @@
+<p>
+  <b>Texto:</b>
+  <%= @comentario.texto %>
+</p>
+
+<p>
+  <b>Usuario:</b>
+  <%= @comentario.usuario_id %>
+</p>
+
+<p>
+  <b>Post:</b>
+  <%= @comentario.post_id %>
+</p>
+
+
+<%= link_to 'Editar', edit_comentario_path(@comentario), class: :"btn btn-warning btn-large btn-primary active" %> |
+<%= link_to 'Atrás', comentarios_path, class: :"btn btn-large btn-primary active" %>

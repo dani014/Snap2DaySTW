@@ -1,0 +1,32 @@
+class RelationshipsController < ApplicationController
+  before_filter :require_login
+
+
+  # POST /relationships
+  # POST /relationships.json
+  def create
+    @usuario = Usuario.find(params[:relationship][:followed_id])
+    current_user.follow!(@usuario)
+    @nombre = @usuario.username
+    flash[:notice] = "Has empezado a seguir a #@nombre."
+    respond_to do |format|
+      format.html { redirect_to @usuario }
+      format.js
+    end
+  end
+
+
+  # DELETE /relationships/1
+  # DELETE /relationships/1.json
+  def destroy
+    @usuario = Relationship.find(params[:id]).followed
+    current_user.unfollow!(@usuario)
+    @nombre = @usuario.username
+    flash[:notice] = "Has dejado de seguir #@nombre."
+    respond_to do |format|
+      format.html { redirect_to @usuario }
+      format.js
+    end
+  end
+  
+end

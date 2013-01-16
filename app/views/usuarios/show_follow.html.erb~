@@ -1,0 +1,19 @@
+      <% unless @usuarios.empty? %>
+
+						
+							<h1>Todos los usuarios</h1>
+<br></br>
+<form action="">
+<input type="text" id="nombre">
+<input type="button" onClick="buscar(document.getElementById('nombre').value);" value="Buscar"/>
+</form>
+      <%= render @usuarios %>
+
+</div>
+</div>
+
+
+      <% end %>
+
+
+

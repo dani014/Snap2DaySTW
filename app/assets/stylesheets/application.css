@@ -1,0 +1,70 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+ .alineado{
+	text-align: center;
+	padding-top: 10%;
+}
+div.alineado{
+	padding-right: 2%;
+}
+
+.menu-alineado{
+	text-align: left;
+}
+
+.prueba{
+	max-width: 250px;
+
+}
+
+
+.pics {  
+    height:  232px;  
+    width:   232px;  
+    padding: 0;  
+    margin:  0;  
+} 
+ 
+.pics img {  
+    padding: 5px;  
+    border:  1px solid #ccc;  
+    background-color: #eee;  
+    max-width:  500px; 
+    max-height: 500px; 
+    top:  0; 
+    left: 0 
+} 
+
+ 
+#imagen-post {  
+    padding: 5px;  
+    border:  1px solid #ccc;  
+    background-color: #eee;  
+    max-width:  500px; 
+    height: auto; 
+    top:  0; 
+    left: 0
+} 
+
+ 
+#sli-lay {  
+    padding: 5px;  
+    border:  1px solid #ccc;  
+    background-color: #eee;  
+    max-width:  250px; 
+    height: auto; 
+    top:  0; 
+    left: 0
+} 

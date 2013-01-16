@@ -1,0 +1,27 @@
+<h1>Listing comentarios</h1>
+
+<table>
+  <tr>
+    <th>Texto</th>
+    <th>Usuario</th>
+    <th>Post</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @comentarios.each do |comentario| %>
+  <tr>
+    <td><%= comentario.texto %></td>
+    <td><%= comentario.usuario_id %></td>
+    <td><%= comentario.post_id %></td>
+    <td><%= link_to 'Mostrar', comentario, class: :"btn btn-primary active"%></td>
+    <td><%= link_to 'Editar', edit_comentario_path(comentario), class: :"btn btn-warning btn-primary active"%></td>
+    <td><%= link_to 'Eliminar', comentario, method: :delete, data: { confirm: 'Está seguro?' }, class: :"btn btn-danger active"%></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Nuevo Comentario', new_comentario_path, class: :"btn btn-large btn-primary active"%>

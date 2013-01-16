@@ -1,0 +1,29 @@
+<% @usuario ||= current_user %>
+<div class="well">
+<h3><b> Siguiendo: </b></h3>
+
+      <% unless @usuario.following.empty? %>
+	<div>
+        <% @usuario.following.each do |usuario| %>
+              <tr>
+		<td><b> <%= link_to usuario.username, usuario%> </b><br></td>
+	      </tr>
+        <% end %>
+        </div>
+      <% end %>
+
+</div>
+<div class="well">
+<h3><b> Seguidores:</b></h3>
+
+      <% unless @usuario.followers.empty? %>
+        <div>
+        <% @usuario.followers.each do |usuario| %>
+            <tr>
+	      <td><b> <%= link_to usuario.username, usuario%> </b><br></td>
+	      </tr>
+        <% end %>
+        </div>
+      <% end %>
+</div>
+

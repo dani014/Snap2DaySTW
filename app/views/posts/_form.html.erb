@@ -1,0 +1,50 @@
+<div id="slideshowHolder" style="padding-right:150px" class='pics pull-right'> 
+  <img src="/sun.jpg" /> 
+  <img src="/transiciones/1.jpg"/> 
+  <img src="/transiciones/2.jpg" />   
+  <img src="/transiciones/3.jpg"/> 
+  <img src="/transiciones/4.jpg"/> 
+  <img src="/transiciones/5.jpg"/> 
+  <img src="/sun2.jpg"  /> 
+  <img src="/transiciones/6.jpg"/> 
+  <img src="/transiciones/7.jpg"/> 
+  <img src="/snow.jpg" /> 
+  <img src="/transiciones/8.jpg"/> 
+  <img src="/transiciones/9.jpg"/> 
+  <img src="/transiciones/10.jpg"/>
+</div> 
+<div class="container" style="center">
+  <%= form_for(@post, html: {multipart: true}) do |f| %>
+    <% if @post.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+        <ul>
+        <% @post.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="field">
+      <%= f.label :titulo %>
+      <%= f.text_field :titulo %>
+    </div>
+    <br>
+    <div class='field'>
+      <%= f.label :Imagen %>
+      <%= f.file_field :photo %>
+    </div>
+    <br>
+    <br>
+    <div class="actions">
+      <%= f.submit "Continuar", class: :"btn btn-large btn-primary active" %>
+      <%= link_to 'Cancelar', session[:url_anterior_edit], class: :"btn btn-large btn-inverse active"%>
+      <% session[:url_anterior_edit] = nil %>
+    </div>
+  <% end %>
+</div>
+
+<script>
+  $('#slideshowHolder').cycle({ width: 400, height: 400, speed:1000  });
+</script>

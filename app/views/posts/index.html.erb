@@ -1,0 +1,32 @@
+<h1>Últimos Posts</h1>
+<br>
+<ul class="thumbnails" id='posts'>
+  <% @posts.each do |post| %>
+    <div id='post'>
+      <li class="span3">
+        <div class="thumbnail prueba">
+          <% if post.has_photo? %>
+            <%= link_to (image_tag post.photo_path), post %>
+          <% end %>
+          <div class='caption'>
+            <h3> <%= link_to post.titulo, post %></h3>
+            <% if current_user %>
+              <p> Subido por: <b> <%= link_to post.usuario.username, post.usuario%> </b> </p>
+            <% else %>
+              <p> Subido por: <b> <%= post.usuario.username %> </b></p>
+            <% end %>
+            <% if current_user %>
+              <% if (current_user.username == post.usuario.username) || (current_user.admin?)%>
+                <%= link_to 'Editar', edit_post_path(post), class: :"btn btn-warning btn-primary active" %>
+                <%= link_to 'Eliminar', post, confirm: '¿Esta seguro de que desea eliminar este post?', method: :delete, class: :"btn btn-danger active" %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </li>
+    </div>
+  <% end %>
+</ul>
+<% if logged_in? %>
+  <%= link_to 'Nuevo Post', new_post_path, class: :"btn btn-large btn-primary active" %>
+<% end %>
